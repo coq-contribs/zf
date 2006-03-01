@@ -63,7 +63,6 @@ COQLIBS=-I .
 ###################################
 
 VFILES=useful.v\
-  nothing.v\
   couples.v\
   axs_reunion.v\
   axs_remplacement.v\
@@ -84,7 +83,6 @@ HTMLFILES=$(VFILES:.v=.html)
 GHTMLFILES=$(VFILES:.v=.g.html)
 
 all: useful.vo\
-  nothing.vo\
   couples.vo\
   axs_reunion.vo\
   axs_remplacement.vo\
@@ -115,7 +113,6 @@ all-gal.ps: $(GFILES)
 
 xml:: .xml_time_stamp
 .xml_time_stamp: useful.vo\
-  nothing.vo\
   couples.vo\
   axs_reunion.vo\
   axs_remplacement.vo\
