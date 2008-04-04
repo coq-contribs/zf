@@ -1,4 +1,4 @@
--R . zf
+-R . ZF
 ./src/ZFrelations.v
 ./src/nothing.v
 ./src/axs_remplacement.v
