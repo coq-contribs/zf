@@ -10,7 +10,7 @@ Require Export axs_reunion.
 (***************************************************************************)
 (* Axiome des parties                                                      *)
 (***************************************************************************)
-Variable parties : E -> E.
+Parameter parties : E -> E.
 Axiom
   axs_parties :
     forall v0 v2 : E,

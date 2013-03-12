@@ -10,7 +10,7 @@ Require Export axs_paire.
 (***************************************************************************)
 (* Axiome de la reunion                                                    *)
 (***************************************************************************)
-Variable reunion : E -> E.
+Parameter reunion : E -> E.
 Axiom
   axs_reunion :
     forall v0 v2 : E,

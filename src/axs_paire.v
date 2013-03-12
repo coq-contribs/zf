@@ -10,7 +10,7 @@ Require Export axs_extensionnalite.
 (***************************************************************************)
 (* Axiome de la paire                                                      *)
 (***************************************************************************)
-Variable paire : E -> E -> E.
+Parameter paire : E -> E -> E.
 Axiom
   axs_paire : forall v0 v1 v3 : E, In v3 (paire v0 v1) <-> v3 = v0 \/ v3 = v1.
 

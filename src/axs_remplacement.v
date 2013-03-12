@@ -10,7 +10,7 @@ Require Export axs_comprehension.
 (***************************************************************************)
 (* 0.5 Schema d'axiome de remplacement                                     *)
 (***************************************************************************)
-Variable remp : (E -> E -> Prop) -> E -> E.
+Parameter remp : (E -> E -> Prop) -> E -> E.
 Axiom
   axs_remplacement :
     forall (F : E -> E -> Prop) (v0 : E),

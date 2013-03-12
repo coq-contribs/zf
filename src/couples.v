@@ -187,12 +187,12 @@ Qed.
 (* Somme disjointe de deux ensembles                                       *)
 (***************************************************************************)
 (* Old Release                                                             *)
-Variable Odisj_l : E -> E.
+Parameter Odisj_l : E -> E.
 Axiom
   axs_Odisj_l :
     forall a x : E,
     In x (Odisj_l a) <-> (exists y : E, In y a /\ x = couple y Vide).
-Variable Odisj_r : E -> E.
+Parameter Odisj_r : E -> E.
 Axiom
   axs_Odisj_r :
     forall a x : E,

@@ -10,7 +10,7 @@ Require Export axs_parties.
 (***************************************************************************)
 (* Schema d'axiome de comprehension                                        *)
 (***************************************************************************)
-Variable subset : (E -> Prop) -> E -> E.
+Parameter subset : (E -> Prop) -> E -> E.
 Axiom
   axs_comprehension :
     forall (F : E -> Prop) (a v0 : E), In v0 (subset F a) <-> In v0 a /\ F v0.
@@ -80,7 +80,7 @@ generalize (lem_vide_propertie v2 v1); intros; elim H0; assumption.
 Qed.
 (* End of proof of lem_vide_unicite                                        *)
 
-Variable var_vide : E.
+Parameter var_vide : E.
 Definition Vide := vide var_vide.
 
 Lemma lem_x_inc_vide : forall x : E, inc x Vide -> x = Vide.
@@ -343,7 +343,7 @@ Qed.
 (***************************************************************************)
 Definition Comp (a b : E) := subset (fun y : E => ~ In y b) a.
 
-Variable OComp : E -> E -> E.
+Parameter OComp : E -> E -> E.
 
 Axiom def_OComp : forall a b y : E, In y (OComp a b) <-> In y a /\ ~ In y b.
 
