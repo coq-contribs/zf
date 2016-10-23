@@ -34,9 +34,9 @@ elim H; clear H; intros.
 generalize (H0 v2); clear H0; unfold iff in |- *; intros.
 elim H0; clear H0; intros.
 split; intros.
-clear H0; clear H1; auto with zfc v62.
+clear H0; clear H1; auto with zfc.
 
-clear H; clear H2; auto with zfc v62.
+clear H; clear H2; auto with zfc.
 
 Qed.
 (* Fin de la preuve de lem_reunion_unique                                  *)
@@ -73,12 +73,12 @@ clear H0; assumption.
 
 apply H0; elim H1; clear H1; intros.
 clear H; clear H0; exists a; split.
-clear H1; elim (axs_paire a b a); intros; auto with zfc v62.
+clear H1; elim (axs_paire a b a); intros; auto with zfc.
 
 assumption.
 
 clear H; clear H0; exists b; split.
-clear H1; elim (axs_paire a b b); intros; auto with zfc v62.
+clear H1; elim (axs_paire a b b); intros; auto with zfc.
 
 assumption.
 
