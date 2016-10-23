@@ -33,7 +33,7 @@ exists (singleton v2); split; [ idtac | apply lem_x_in_sing_x ].
 elim (axs_parties x (singleton v2)); intros; apply H1; clear H0 H1; intros.
 unfold singleton in H0.
 elim (axs_paire v2 v2 v3); intros; generalize (H1 H0); clear H1 H2; intros.
-elim H1; clear H1; intros; rewrite H1; auto with zfc v62.
+elim H1; clear H1; intros; rewrite H1; auto with zfc.
 
 Qed.
 (* End of proof of lem_reunion_parties                                     *)

@@ -28,9 +28,9 @@ generalize (axs_paire a b); unfold iff in |- *; intros.
 generalize (H1 v2); clear H1; intros.
 elim H1; clear H1; intros.
 split; intros.
-clear H0; clear H1; auto with v62.
+clear H0; clear H1; auto.
 
-clear H; clear H2; auto with v62.
+clear H; clear H2; auto.
 
 Qed.
 (* End of proof of lem_paire_unique                                        *)
@@ -45,9 +45,9 @@ apply axs_extensionnalite; intros; unfold iff in |- *; intros.
 elim (axs_paire b a v2); intros.
 elim (axs_paire a b v2); intros.
 split; intros.
-clear H; clear H2; apply H0; clear H0; apply lem_or_sym; auto with v62.
+clear H; clear H2; apply H0; clear H0; apply lem_or_sym; auto.
 
-clear H0; clear H1; apply H2; clear H2; apply lem_or_sym; auto with v62.
+clear H0; clear H1; apply H2; clear H2; apply lem_or_sym; auto.
 
 Qed.
 (* End of proof of lem_paire_sym                                           *)
@@ -121,7 +121,7 @@ Lemma lem_singleton_propertie :
 intros; unfold singleton in |- *.
 elim (lem_paire_propertie a a b b); intros.
 unfold iff in |- *; split; intros.
-apply lem_and_contract; apply lem_or_contract; auto with zfc v62.
+apply lem_and_contract; apply lem_or_contract; auto with zfc.
 
 rewrite H1; reflexivity.
 
@@ -132,7 +132,7 @@ Lemma lem_in_singleton : forall a x : E, In x (singleton a) <-> x = a.
 (* Proof of lem_in_singleton                                               *)
 intros; elim (axs_paire a a x); intros.
 unfold singleton in |- *; unfold iff in |- *; split; intros;
- [ elim H; intros; auto with zfc v62 | apply H0; left; auto with zfc v62 ].
+ [ elim H; intros; auto with zfc | apply H0; left; auto with zfc ].
 
 Qed.
 (* End of proof of lem_in_singleton                                        *)

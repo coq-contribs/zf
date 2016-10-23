@@ -21,7 +21,7 @@ Lemma lem_subset :
 (* Proof of lem_subset                                                     *)
 intros; elim (axs_comprehension F b y); intros.
 generalize H1; rewrite <- H; clear H H1 H2; intros.
-elim H1; intros; auto with zfc v62.
+elim H1; intros; auto with zfc.
 
 Qed.
 (* End of proof of lem_subset                                              *)
@@ -60,21 +60,21 @@ Definition fun_sig (f a b : E) := fun_ f /\ dom f = a /\ inc (Img f) b.
 Lemma lem_fun_sig_is_fun : forall f a b : E, fun_sig f a b -> fun_ f.
 (* Proof of lem_fun_sig_is_fun                                             *)
 unfold fun_sig in |- *; intros.
-elim H; clear H; intros; auto with zfc v62.
+elim H; clear H; intros; auto with zfc.
 
 Qed.
 (* End of proof of lem_fun_sig_is_fun                                      *)
 
 Lemma lem_fun_sig_dom : forall f a b : E, fun_sig f a b -> dom f = a.
 (* Proof of lem_fun_sig_dom                                                *)
-intros; elim H; clear H; intros; elim H0; clear H0; intros; auto with zfc v62.
+intros; elim H; clear H; intros; elim H0; clear H0; intros; auto with zfc.
 
 Qed.
 (* End of proof of lem_fun_sig_dom                                         *)
 
 Lemma lem_fun_sig_img : forall f a b : E, fun_sig f a b -> inc (Img f) b.
 (* Proof of lem_fun_sig_img                                                *)
-intros; elim H; clear H; intros; elim H0; clear H0; intros; auto with zfc v62.
+intros; elim H; clear H; intros; elim H0; clear H0; intros; auto with zfc.
 
 Qed.
 (* End of proof of lem_fun_sig_img                                         *)
@@ -110,8 +110,8 @@ Lemma lem_surj_to_sig : forall f a b : E, fun_surj f a b -> fun_sig f a b.
 unfold fun_surj in |- *; unfold fun_sig in |- *; intros.
 elim H; clear H; intros; elim H0; clear H0; intros.
 split;
- [ auto with zfc v62
- | split; [ auto with zfc v62 | unfold inc in |- *; intros ] ].
+ [ auto with zfc
+ | split; [ auto with zfc | unfold inc in |- *; intros ] ].
 generalize H2; rewrite H1; tauto.
 
 Qed.
@@ -121,7 +121,7 @@ Lemma lem_inj_to_sig : forall f a b : E, fun_inj f a b -> fun_sig f a b.
 (* Proof of lem_inj_to_sig                                                 *)
 unfold fun_inj in |- *; unfold fun_sig in |- *; intros.
 elim H; clear H; intros; elim H0; clear H0; intros; elim H1; clear H1; intros.
-split; [ auto with zfc v62 | split; auto with zfc v62 ].
+split; [ auto with zfc | split; auto with zfc ].
 
 Qed.
 (* End of proof of lem_inj_to_sig                                          *)
@@ -131,9 +131,9 @@ Lemma lem_bij_to_sig : forall f a b : E, fun_bij f a b -> fun_sig f a b.
 unfold fun_bij in |- *; unfold fun_sig in |- *; intros.
 elim H; clear H; intros; elim H0; clear H0; intros; elim H1; clear H1; intros.
 split;
- [ auto with zfc v62
- | split; [ auto with zfc v62 | unfold inc in |- *; intros ] ].
-rewrite <- H1; auto with zfc v62.
+ [ auto with zfc
+ | split; [ auto with zfc | unfold inc in |- *; intros ] ].
+rewrite <- H1; auto with zfc.
 
 Qed.
 (* End of proof of lem_bij_to_sig                                          *)
@@ -146,12 +146,12 @@ Lemma lem_bij_is_inj : forall f a b : E, fun_bij f a b -> fun_inj f a b.
 unfold fun_bij, fun_inj in |- *; intros.
 elim H; clear H; intros; elim H0; clear H0; intros; elim H1; clear H1; intros.
 split;
- [ auto with zfc v62
+ [ auto with zfc
  | split;
-    [ auto with zfc v62
+    [ auto with zfc
     | split;
-       [ unfold inc in |- *; intros; rewrite <- H1; auto with zfc v62
-       | auto with zfc v62 ] ] ].
+       [ unfold inc in |- *; intros; rewrite <- H1; auto with zfc
+       | auto with zfc ] ] ].
 
 Qed.
 (* End of proof of lem_bij_is_inj                                          *)
@@ -163,7 +163,7 @@ Lemma lem_bij_is_surj : forall f a b : E, fun_bij f a b -> fun_surj f a b.
 (* Proof of lem_bij_is_inj                                                 *)
 unfold fun_bij, fun_surj in |- *; intros.
 elim H; clear H; intros; elim H0; clear H0; intros; elim H1; clear H1; intros.
-split; [ auto with zfc v62 | split; auto with zfc v62 ].
+split; [ auto with zfc | split; auto with zfc ].
 
 Qed.
 (* End of proof of lem_bij_is_inj                                          *)
@@ -179,8 +179,8 @@ elim H; clear H; intros; clear H; elim H1; clear H1; intros; clear H.
 elim H0; clear H0; intros; elim H0; clear H0; intros; elim H2; clear H2;
  intros.
 split;
- [ auto with zfc v62
- | split; [ auto with zfc v62 | split; auto with zfc v62 ] ].
+ [ auto with zfc
+ | split; [ auto with zfc | split; auto with zfc ] ].
 
 Qed.
 (* End of proof of lem_inj_surj_is_bij                                     *)
@@ -200,7 +200,7 @@ unfold fun_ in |- *; split;
  [ exists Vide; exists Vide; exact (lem_vide_is_inc (cartesien Vide Vide))
  | intros ].
 unfold Vide in H; elim (lem_vide_propertie (couple x y) var_vide);
- auto with zfc v62.
+ auto with zfc.
 
 Qed.
 (* End of proof of lem_vide_application                                    *)
@@ -219,7 +219,7 @@ elim
  clear H H0 H1; intros.
 generalize H; rewrite lem_reunion_vide; rewrite lem_reunion_vide; tauto.
 
-elim (lem_vide_propertie v2 var_vide); auto with zfc v62.
+elim (lem_vide_propertie v2 var_vide); auto with zfc.
 
 Qed.
 (* End of proof of  lem_dom_vide                                           *)
@@ -239,7 +239,7 @@ elim
 elim H; clear H; intros.
 generalize H; rewrite lem_reunion_vide; rewrite lem_reunion_vide; tauto.
 
-unfold Vide in H; elim (lem_vide_propertie v2 var_vide); auto with zfc v62.
+unfold Vide in H; elim (lem_vide_propertie v2 var_vide); auto with zfc.
 
 Qed.
 (* End of proof of lem_img_vide                                            *)
@@ -272,12 +272,12 @@ elim
     (fun v0 : E => fun_ f -> exists v1 : E, In (couple v0 v1) f)
     (reunion (reunion f)) a); intros; apply H2; clear H1 H2; 
  intros.
-split; [ idtac | intros; exists b; auto with zfc v62 ].
+split; [ idtac | intros; exists b; auto with zfc ].
 elim (axs_reunion (reunion f) a); intros; apply H2; clear H1 H2; intros.
 exists (singleton a); split; [ idtac | exact (lem_x_in_sing_x a) ].
 elim (axs_reunion f (singleton a)); intros; apply H2; clear H1 H2; intros.
 exists (couple a b); split;
- [ auto with zfc v62
+ [ auto with zfc
  | unfold couple in |- *;
     elim (axs_paire (singleton a) (paire a b) (singleton a)); 
     intros; apply H2; left; reflexivity ].
@@ -294,14 +294,14 @@ elim
     (fun v1 : E => fun_ f -> exists v0 : E, In (couple v0 v1) f)
     (reunion (reunion f)) b); intros; apply H2; clear H1 H2; 
  intros.
-split; [ idtac | intros; exists a; auto with zfc v62 ].
+split; [ idtac | intros; exists a; auto with zfc ].
 elim (axs_reunion (reunion f) b); intros; apply H2; clear H1 H2; intros;
  exists (paire a b).
 split;
  [ idtac | elim (axs_paire a b b); intros; apply H2; right; reflexivity ].
 elim (axs_reunion f (paire a b)); intros; apply H2; clear H1 H2; intros.
 exists (couple a b); split;
- [ auto with zfc v62
+ [ auto with zfc
  | unfold couple in |- *;
     elim (axs_paire (singleton a) (paire a b) (paire a b)); 
     intros; apply H2; right; reflexivity ].
@@ -325,7 +325,7 @@ elim
  clear H0 H1 H2; intros.
 elim H0; clear H0; intros; generalize (H1 H); clear H1; intros.
 elim H1; clear H1; intros.
-exists x0; split; [ exact (lem_fun_and_img f x x0 H H1) | auto with zfc v62 ].
+exists x0; split; [ exact (lem_fun_and_img f x x0 H H1) | auto with zfc ].
 
 Qed.
 (* End of proof of lem_App                                            *)
@@ -346,7 +346,7 @@ elim
  clear H0 H1 H2; intros.
 elim H0; clear H0; intros; generalize (H1 H); clear H1; intros; elim H1;
  clear H1; intros.
-exists x; split; [ exact (lem_fun_and_dom f x y H H1) | auto with zfc v62 ].
+exists x; split; [ exact (lem_fun_and_dom f x y H H1) | auto with zfc ].
 
 Qed.
 (* End of proof of lem_App_rev                                        *)
@@ -397,7 +397,7 @@ elim
      exists y : E, In (couple (first x) y) f /\ In (couple y (second x)) g)
     (cartesien a c) v2); intros; apply H3; clear H2 H3; 
  intros.
-split; [ auto with zfc v62 | intros; exists x; split; auto with zfc v62 ].
+split; [ auto with zfc | intros; exists x; split; auto with zfc ].
 
 unfold comp2 in H.
 elim
@@ -417,7 +417,7 @@ elim
      exists y : E, In (couple (first c0) y) f /\ In (couple y (second c0)) g)
     (cartesien a c) v2); intros; apply H3; clear H2 H3; 
  intros.
-split; [ auto with zfc v62 | exists x; split; auto with zfc v62 ].
+split; [ auto with zfc | exists x; split; auto with zfc ].
 
 Qed.
 (* End of proof of lem_comp2_eq_comp                                       *)
@@ -445,7 +445,7 @@ elim Af; clear Af; intros.
 elim H3; clear H3; intros.
 elim Ag; clear Ag; intros.
 elim H6; clear H6; intros.
-auto with zfc v62.
+auto with zfc.
 
 unfold comp in H; unfold comp in H0.
 elim
@@ -521,7 +521,7 @@ generalize (lem_App f v2 H0 H); intros; elim H6; clear H6; intros; elim H6;
 unfold inc in H2.
 generalize (H2 x); intros.
 generalize (H8 H6); clear H6 H8; intros.
-cut (In x (dom g)); [ intros | rewrite H4; auto with zfc v62 ].
+cut (In x (dom g)); [ intros | rewrite H4; auto with zfc ].
 generalize (lem_App g x H3 H8); intros.
 elim H9; clear H9; intros; elim H9; clear H9; intros.
 unfold dom in |- *.
@@ -554,11 +554,11 @@ split; [ idtac | exists x ].
 elim (lem_cartesian_propertie a c (couple v2 x0)); intros; apply H12;
  clear H11 H12; intros.
 exists v2; exists x0.
-rewrite <- H1; split; [ auto with zfc v62 | split; [ idtac | reflexivity ] ].
+rewrite <- H1; split; [ auto with zfc | split; [ idtac | reflexivity ] ].
 unfold inc in H5; generalize (H5 x0); intros; exact (H11 H9).
 
 rewrite (lem_first_propertie v2 x0); rewrite (lem_second_propertie v2 x0);
- split; auto with zfc v62.
+ split; auto with zfc.
 
 intros; exists x0.
 unfold comp in |- *.
@@ -572,11 +572,11 @@ split; [ idtac | exists x ].
 elim (lem_cartesian_propertie a c (couple v2 x0)); intros; apply H13;
  clear H12 H13; intros.
 exists v2; exists x0.
-rewrite <- H1; split; [ auto with zfc v62 | split; [ idtac | reflexivity ] ].
+rewrite <- H1; split; [ auto with zfc | split; [ idtac | reflexivity ] ].
 unfold inc in H5; generalize (H5 x0); intros; exact (H12 H9).
 
 rewrite (lem_first_propertie v2 x0); rewrite (lem_second_propertie v2 x0);
- split; auto with zfc v62.
+ split; auto with zfc.
 
 Qed.
 (* End of proof of lem_comp_dom                                            *)
@@ -628,7 +628,7 @@ elim
 split;
  [ idtac
  | exists y; rewrite (lem_first_propertie x z);
-    rewrite (lem_second_propertie x z); split; auto with zfc v62 ].
+    rewrite (lem_second_propertie x z); split; auto with zfc ].
 elim Af; clear Af; intros; elim H2; clear H2; intros.
 elim Ag; clear Ag; intros; elim H5; clear H5; intros.
 elim (lem_cartesian_propertie a c (couple x z)); intros; apply H8;
@@ -660,7 +660,7 @@ elim
 elim H; clear H; intros; elim H0; clear H0; intros; elim H0; clear H0; intros.
 generalize H0; clear H0; rewrite (lem_first_propertie x z); intros.
 generalize H1; clear H1; rewrite (lem_second_propertie x z); intros.
-exists x0; split; auto with zfc v62.
+exists x0; split; auto with zfc.
 
 Qed.
 (* End of proof of lem_comp_intermed                                       *)
@@ -683,9 +683,9 @@ elim
  (axs_comprehension (fun z : E => exists y : E, In (couple x y) f /\ In z y)
     (reunion (Img f)) v2); intros; apply H2; clear H1 H2; 
  intros.
-split; [ idtac | exists y; split; auto with zfc v62 ].
+split; [ idtac | exists y; split; auto with zfc ].
 elim (axs_reunion (Img f) v2); intros; apply H2; clear H1 H2; intros.
-exists y; split; [ exact (lem_fun_and_img f x y Af H) | auto with zfc v62 ].
+exists y; split; [ exact (lem_fun_and_img f x y Af H) | auto with zfc ].
 
 unfold App in H0.
 elim
@@ -697,7 +697,7 @@ elim H0; clear H0; intros; elim H1; clear H1; intros; elim H1; clear H1;
 elim Af; clear Af; intros; elim H3; clear H3; intros; elim H3; clear H3;
  intros.
 generalize (H4 x x0 y H1 H); clear H4; intros.
-rewrite <- H4; auto with zfc v62.
+rewrite <- H4; auto with zfc.
 
 Qed.
 (* End of proof of lem_eval_propertie                                      *)
@@ -714,7 +714,7 @@ elim
 elim H; clear H; intros.
 generalize (H0 Af); clear H0; intros; elim H0; clear H0; intros.
 generalize (lem_eval_propertie f x x0 Af H0); intros.
-rewrite <- H1; auto with zfc v62.
+rewrite <- H1; auto with zfc.
 
 Qed.
 (* End of proof of lem_eval_prop2                                          *)
@@ -734,7 +734,7 @@ elim (lem_cartesian_propertie x0 x1 x); intros; generalize (H0 H);
  clear H H0 H2; intros.
 elim H; clear H; intros; elim H; clear H; intros; elim H; clear H; intros;
  elim H0; clear H0; intros.
-exists x2; exists x3; auto with zfc v62.
+exists x2; exists x3; auto with zfc.
 
 Qed.
 (* End of proof of lem_x_in_fun_form                                       *)
@@ -780,7 +780,7 @@ elim
     (fun x : E => exists y : E, x = couple y (fun_img_directe f Af y))
     (cartesien (parties (dom f)) (parties (Img f))) v0); 
  intros; generalize (H0 H); clear H H0 H1; intros.
-elim H; clear H; intros; auto with zfc v62.
+elim H; clear H; intros; auto with zfc.
 
 unfold fun_part in H; unfold fun_part in H0.
 elim
@@ -843,7 +843,7 @@ elim H0; clear H0; intros; elim H0; clear H0; intros; elim H0; clear H0;
 elim H1; clear H1; intros.
 elim (lem_couple_propertie v2 x0 x x1); intros; generalize (H4 H3);
  clear H3 H4 H5; intros.
-elim H3; clear H3; intros; rewrite H3; auto with zfc v62.
+elim H3; clear H3; intros; rewrite H3; auto with zfc.
 
 unfold dom in |- *.
 elim
@@ -877,7 +877,7 @@ elim
     (couple v2 (fun_img_directe f Af v2))); intros; 
  apply H1; clear H0 H1; intros.
 exists v2; exists (fun_img_directe f Af v2); split;
- [ auto with zfc v62 | split; [ idtac | reflexivity ] ].
+ [ auto with zfc | split; [ idtac | reflexivity ] ].
 elim (axs_parties (Img f) (fun_img_directe f Af v2)); intros; apply H1;
  clear H0 H1; intros.
 unfold fun_img_directe in H0.
@@ -887,7 +887,7 @@ elim
      In v2 (parties (dom f)) -> exists y : E, In y v2 /\ x = App f Af y)
     (Img f) v3); intros; generalize (H1 H0); clear H0 H1 H2; 
  intros.
-elim H0; clear H0; intros; auto with zfc v62.
+elim H0; clear H0; intros; auto with zfc.
 
 exists (fun_img_directe f Af v2); unfold fun_part in |- *.
 elim
@@ -902,7 +902,7 @@ elim
     (couple v2 (fun_img_directe f Af v2))); intros; 
  apply H2; clear H1 H2; intros.
 exists v2; exists (fun_img_directe f Af v2); split;
- [ auto with zfc v62 | split; [ idtac | reflexivity ] ].
+ [ auto with zfc | split; [ idtac | reflexivity ] ].
 elim (axs_parties (Img f) (fun_img_directe f Af v2)); intros; apply H2;
  clear H1 H2; intros.
 unfold fun_img_directe in H1.
@@ -912,7 +912,7 @@ elim
      In v2 (parties (dom f)) -> exists y : E, In y v2 /\ x = App f Af y)
     (Img f) v3); intros; generalize (H2 H1); clear H1 H2 H3; 
  intros.
-elim H1; clear H1; intros; auto with zfc v62.
+elim H1; clear H1; intros; auto with zfc.
 
 Qed.
 (* End of proof of lem_fun_part_dom                                        *)
@@ -951,7 +951,7 @@ elim H0; clear H0; intros; elim H0; clear H0; intros; elim H0; clear H0;
 elim (lem_couple_propertie x x1 v2 x2); intros; generalize (H4 H3);
  clear H3 H4 H5; intros.
 elim H3; clear H3; intros.
-rewrite H4; auto with zfc v62.
+rewrite H4; auto with zfc.
 
 unfold Img in |- *.
 elim
@@ -990,7 +990,7 @@ elim
     (couple (fun_img_inverse f Af v2) v2)); intros; 
  apply H1; clear H0 H1; intros.
 exists (fun_img_inverse f Af v2); exists v2; split;
- [ idtac | split; [ auto with zfc v62 | reflexivity ] ].
+ [ idtac | split; [ auto with zfc | reflexivity ] ].
 elim (axs_parties (dom f) (fun_img_inverse f Af v2)); intros; apply H1;
  clear H0 H1; intros.
 unfold fun_img_inverse in H0.
@@ -999,7 +999,7 @@ elim
     (fun x : E => In v2 (parties (Img f)) -> In (App f Af x) v2) 
     (dom f) v3); intros; generalize (H1 H0); clear H0 H1 H2; 
  intros.
-elim H0; clear H0; intros; auto with zfc v62.
+elim H0; clear H0; intros; auto with zfc.
 
 elim
  (lem_couple_propertie (fun_img_inverse f Af v2) (fun_img_inverse f Af v2) v2
@@ -1029,9 +1029,9 @@ elim
  (axs_comprehension
     (fun x0 : E => In v2 (parties (Img f)) -> In (App f Af x0) v2) 
     (dom f) x); intros; apply H6; clear H5 H6; intros.
-split; [ auto with zfc v62 | intros ].
+split; [ auto with zfc | intros ].
 generalize (lem_eval_propertie f x v0 Af H4); intros.
-rewrite <- H6; auto with zfc v62.
+rewrite <- H6; auto with zfc.
 
 exact (lem_eval_propertie f x v0 Af H4).
 
@@ -1054,7 +1054,7 @@ elim
     (dom f) x); intros; generalize (H3 H1); clear H1 H3 H4; 
  intros.
 elim H1; clear H1; intros; generalize (H3 H); clear H3; intros.
-rewrite H2; auto with zfc v62.
+rewrite H2; auto with zfc.
 
 clear H1; elim (axs_parties (dom f) (fun_img_inverse f Af v2)); intros;
  apply H2; clear H1 H2; intros.
@@ -1064,7 +1064,7 @@ elim
     (fun x : E => In v2 (parties (Img f)) -> In (App f Af x) v2) 
     (dom f) v3); intros; generalize (H2 H1); clear H1 H2 H3; 
  intros.
-elim H1; clear H1; intros; auto with zfc v62.
+elim H1; clear H1; intros; auto with zfc.
 
 exists (fun_img_inverse f Af v2).
 unfold fun_part in |- *.
@@ -1080,7 +1080,7 @@ elim
     (couple (fun_img_inverse f Af v2) v2)); intros; 
  apply H2; clear H1 H2; intros.
 exists (fun_img_inverse f Af v2); exists v2; split;
- [ idtac | split; [ auto with zfc v62 | reflexivity ] ].
+ [ idtac | split; [ auto with zfc | reflexivity ] ].
 elim (axs_parties (dom f) (fun_img_inverse f Af v2)); intros; apply H2;
  clear H1 H2; intros.
 unfold fun_img_inverse in H1.
@@ -1090,7 +1090,7 @@ elim
     (dom f) v3); intros; generalize (H2 H1); clear H1 H2 H3; 
  intros.
 elim H1; clear H1; intros; generalize (H2 H); clear H2; intros;
- auto with zfc v62.
+ auto with zfc.
 
 elim
  (lem_couple_propertie (fun_img_inverse f Af v2) (fun_img_inverse f Af v2) v2
@@ -1119,9 +1119,9 @@ elim
  (axs_comprehension
     (fun x0 : E => In v2 (parties (Img f)) -> In (App f Af x0) v2) 
     (dom f) x); intros; apply H9; clear H8 H9; intros.
-split; [ auto with zfc v62 | intros ].
+split; [ auto with zfc | intros ].
 generalize (lem_eval_propertie f x v0 Af H7); intros.
-rewrite <- H9; auto with zfc v62.
+rewrite <- H9; auto with zfc.
 
 exact (lem_eval_propertie f x v0 Af H7).
 
@@ -1144,7 +1144,7 @@ elim
     (dom f) x); intros; generalize (H4 H2); clear H2 H4 H5; 
  intros.
 elim H2; clear H2; intros; generalize (H4 H); clear H4; intros.
-rewrite H3; auto with zfc v62.
+rewrite H3; auto with zfc.
 
 clear H2; elim (axs_parties (dom f) (fun_img_inverse f Af v2)); intros;
  apply H3; clear H2 H3; intros.
@@ -1154,7 +1154,7 @@ elim
     (fun x : E => In v2 (parties (Img f)) -> In (App f Af x) v2) 
     (dom f) v3); intros; generalize (H3 H2); clear H2 H3 H4; 
  intros.
-elim H2; clear H2; intros; auto with zfc v62.
+elim H2; clear H2; intros; auto with zfc.
 
 Qed.
 (* End of proof of lem_fun_part_img                                        *)
@@ -1178,7 +1178,7 @@ elim
     (fun x0 : E => In x (parties (Img f)) -> In (App f Af x0) x) 
     (dom f) v3); intros; generalize (H1 H0); clear H0 H1 H2; 
  intros.
-elim H0; clear H0; intros; auto with zfc v62.
+elim H0; clear H0; intros; auto with zfc.
 
 Qed.
 (* End of proof of lem_fun_img_inv_is_in_pdom                              *)
@@ -1207,7 +1207,7 @@ elim
     (dom f) x0); intros; generalize (H3 H1); clear H1 H3 H4; 
  intros.
 elim H1; clear H1; intros; generalize (H3 H); clear H3; intros.
-rewrite H2; auto with zfc v62.
+rewrite H2; auto with zfc.
 
 unfold fun_img_directe in |- *.
 elim
@@ -1218,7 +1218,7 @@ elim
     (Img f) v2); intros; apply H2; clear H1 H2; intros.
 split; intros.
 elim (axs_parties (Img f) x); intros; generalize (H1 H); clear H1 H2; intros;
- auto with zfc v62.
+ auto with zfc.
 
 elim (axs_parties (Img f) x); intros; generalize (H2 H); clear H2 H3; intros.
 generalize (H2 v2 H0); clear H2; intros.
@@ -1230,9 +1230,9 @@ elim
  (axs_comprehension
     (fun x1 : E => In x (parties (Img f)) -> In (App f Af x1) x) 
     (dom f) x0); intros; apply H6; clear H5 H6; intros.
-split; [ auto with zfc v62 | intros; clear H5 ].
+split; [ auto with zfc | intros; clear H5 ].
 generalize (lem_eval_propertie f x0 v2 Af H4); intros.
-rewrite <- H5; auto with zfc v62.
+rewrite <- H5; auto with zfc.
 
 exact (lem_eval_propertie f x0 v2 Af H4).
 
@@ -1256,7 +1256,7 @@ elim
      In x (parties (dom f)) -> exists y : E, In y x /\ x0 = App f Af y)
     (Img f) v3); intros; generalize (H1 H0); clear H0 H1 H2; 
  intros.
-elim H0; clear H0; intros; auto with zfc v62.
+elim H0; clear H0; intros; auto with zfc.
 
 Qed.
 (* End of proof of lem_fun_img_dir_is_in_pimg                              *)
@@ -1292,7 +1292,7 @@ generalize (H2 v0 H0); clear H2; intros.
 generalize (lem_eval_prop2 f v0 Af H2); intros.
 exact (lem_fun_and_img f v0 (App f Af v0) Af H3).
 
-exists v0; split; [ auto with zfc v62 | reflexivity ].
+exists v0; split; [ auto with zfc | reflexivity ].
 
 Qed.
 (* End of proof of lem_fun_img_prop2                                       *)
@@ -1324,7 +1324,7 @@ elim
 elim H1; clear H1; intros; elim H3; clear H3; intros.
 elim (lem_couple_propertie x x1 x0 (fun_img_directe f Af x1)); intros;
  generalize (H4 H3); clear H3 H4 H5; intros.
-elim H3; clear H3; intros; rewrite H3; rewrite <- H4; auto with zfc v62.
+elim H3; clear H3; intros; rewrite H3; rewrite <- H4; auto with zfc.
 
 generalize H; rewrite (lem_fun_part_dom f Af); intros.
 unfold fun_img_directe in H0.
@@ -1345,12 +1345,12 @@ elim
 split.
 rewrite (lem_fun_part_img f Af).
 rewrite (lem_reunion_parties (Img f)).
-auto with zfc v62.
+auto with zfc.
 
 generalize (lem_fun_part_is_fun f Af); intros.
 generalize (lem_App (fun_part f Af) x H4 H); intros.
 elim H5; clear H5; intros; elim H5; clear H5; intros.
-exists x1; split; [ auto with zfc v62 | idtac ].
+exists x1; split; [ auto with zfc | idtac ].
 unfold fun_part in H6.
 elim
  (axs_comprehension
@@ -1369,7 +1369,7 @@ elim
     (fun x0 : E =>
      In x (parties (dom f)) -> exists y : E, In y x /\ x0 = App f Af y)
     (Img f) v2); intros; apply H10; clear H9 H10; intros.
-split; [ auto with zfc v62 | intros; exists x0; split; auto with zfc v62 ].
+split; [ auto with zfc | intros; exists x0; split; auto with zfc ].
 
 Qed.
 (* End of proof of lem_fun_part_eval_prop                                  *)
@@ -1399,7 +1399,7 @@ elim
     (fun x : E => exists y : E, x = couple y (fun_img_inverse f Af y))
     (cartesien (parties (Img f)) (parties (dom f))) v0); 
  intros; generalize (H0 H); clear H H0 H1; intros.
-elim H; clear H; intros; auto with zfc v62.
+elim H; clear H; intros; auto with zfc.
 
 unfold fun_part_inv in H; unfold fun_part_inv in H0.
 elim
@@ -1460,7 +1460,7 @@ elim H0; clear H0; intros; elim H0; clear H0; intros; elim H0; clear H0;
 elim (lem_couple_propertie v2 x1 x x2); intros; generalize (H4 H3);
  clear H3 H4 H5; intros.
 elim H3; clear H3; intros.
-rewrite H3; auto with zfc v62.
+rewrite H3; auto with zfc.
 
 elim (axs_parties (Img f) v2); intros; generalize (H0 H); clear H0 H1; intros.
 unfold dom in |- *.
@@ -1496,13 +1496,13 @@ elim
     (cartesien (parties (Img f)) (parties (dom f)))
     (couple v2 (fun_img_inverse f Af v2))); intros; 
  apply H2; clear H1 H2; intros.
-split; [ idtac | exists v2; auto with zfc v62 ].
+split; [ idtac | exists v2; auto with zfc ].
 elim
  (lem_cartesian_propertie (parties (Img f)) (parties (dom f))
     (couple v2 (fun_img_inverse f Af v2))); intros; 
  apply H2; clear H1 H2; intros.
 exists v2; exists (fun_img_inverse f Af v2); split;
- [ auto with zfc v62 | split; [ idtac | reflexivity ] ].
+ [ auto with zfc | split; [ idtac | reflexivity ] ].
 elim (axs_parties (dom f) (fun_img_inverse f Af v2)); intros; apply H2;
  clear H1 H2; intros.
 unfold fun_img_inverse in H1.
@@ -1511,7 +1511,7 @@ elim
     (fun x : E => In v2 (parties (Img f)) -> In (App f Af x) v2) 
     (dom f) v3); intros; generalize (H2 H1); clear H1 H2 H3; 
  intros.
-elim H1; clear H1; intros; auto with zfc v62.
+elim H1; clear H1; intros; auto with zfc.
 
 exists (fun_img_inverse f Af v2); unfold fun_part_inv in |- *.
 elim
@@ -1526,7 +1526,7 @@ elim
     (couple v2 (fun_img_inverse f Af v2))); intros; 
  apply H3; clear H2 H3; intros.
 exists v2; exists (fun_img_inverse f Af v2); split;
- [ auto with zfc v62 | split; [ idtac | reflexivity ] ].
+ [ auto with zfc | split; [ idtac | reflexivity ] ].
 elim (axs_parties (dom f) (fun_img_inverse f Af v2)); intros; apply H3;
  clear H2 H3; intros.
 unfold fun_img_inverse in H2.
@@ -1535,7 +1535,7 @@ elim
     (fun x : E => In v2 (parties (Img f)) -> In (App f Af x) v2) 
     (dom f) v3); intros; generalize (H3 H2); clear H2 H3 H4; 
  intros.
-elim H2; clear H2; intros; auto with zfc v62.
+elim H2; clear H2; intros; auto with zfc.
 
 Qed.
 (* End of proof of lem_fun_part_inv_dom                                    *)
@@ -1575,7 +1575,7 @@ elim H0; clear H0; intros; elim H0; clear H0; intros; elim H0; clear H0;
 elim (lem_couple_propertie x x1 v0 x2); intros; generalize (H4 H3);
  clear H3 H4 H5; intros.
 elim H3; clear H3; intros.
-rewrite H4; auto with zfc v62.
+rewrite H4; auto with zfc.
 
 Qed.
 (* End of proof of lem_fun_part_inv_img                                    *)
@@ -1609,7 +1609,7 @@ elim H1; clear H1; intros; elim H3; clear H3; intros.
 elim (lem_couple_propertie x x1 x0 (fun_img_inverse f Af x1)); intros;
  generalize (H4 H3); clear H3 H4 H5; intros.
 elim H3; clear H3; intros.
-rewrite H3; rewrite <- H4; auto with zfc v62.
+rewrite H3; rewrite <- H4; auto with zfc.
 
 unfold fun_img_inverse in H0.
 elim
@@ -1633,7 +1633,7 @@ split.
 elim (axs_reunion (Img (fun_part_inv f Af)) v2); intros; apply H6;
  clear H5 H6; intros.
 exists x0.
-split; [ auto with zfc v62 | idtac ].
+split; [ auto with zfc | idtac ].
 unfold fun_part_inv in H4.
 elim
  (axs_comprehension
@@ -1651,9 +1651,9 @@ elim
  (axs_comprehension
     (fun x0 : E => In x (parties (Img f)) -> In (App f Af x0) x) 
     (dom f) v2); intros; apply H6; clear H5 H6; intros.
-split; intros; auto with zfc v62.
+split; intros; auto with zfc.
 
-exists x0; split; [ auto with zfc v62 | idtac ].
+exists x0; split; [ auto with zfc | idtac ].
 unfold fun_part_inv in H4.
 elim
  (axs_comprehension
@@ -1671,7 +1671,7 @@ elim
  (axs_comprehension
     (fun x0 : E => In x (parties (Img f)) -> In (App f Af x0) x) 
     (dom f) v2); intros; apply H6; clear H5 H6; intros.
-split; intros; auto with zfc v62.
+split; intros; auto with zfc.
 
 Qed.
 (* End of proof of lem_fun_part_inv_eval_prop                              *)
@@ -1710,7 +1710,7 @@ elim
      exists x : E, (exists y : E, In (couple x y) f /\ c = couple y x))
     (cartesien (Img f) (dom f)) v0); intros; generalize (H2 H0);
  clear H0 H2 H3; intros.
-elim H0; clear H0; intros; auto with zfc v62.
+elim H0; clear H0; intros; auto with zfc.
 
 unfold fun_recip in H0; unfold fun_recip in H2.
 elim
@@ -1745,15 +1745,15 @@ elim H; clear H; intros.
 elim H; clear H; intros; elim H; clear H; intros.
 unfold fun_inj in |- *.
 split;
- [ auto with zfc v62
+ [ auto with zfc
  | split;
     [ reflexivity
     | split;
-       [ unfold inc in |- *; intros; auto with zfc v62
+       [ unfold inc in |- *; intros; auto with zfc
        | unfold exUniq in |- *; intros ] ] ].
 generalize (lem_App_rev f b Af H1); intros; elim H2; clear H2; intros;
  elim H2; clear H2; intros.
-exists x1; split; [ auto with zfc v62 | intros ].
+exists x1; split; [ auto with zfc | intros ].
 generalize (lem_fun_and_dom f y b Af H4); intros.
 cut (In (couple b x1) (fun_recip f Af)); intros.
 cut (In (couple b y) (fun_recip f Af)); intros.
@@ -1767,11 +1767,11 @@ elim
     (cartesien (Img f) (dom f)) (couple b y)); intros; 
  apply H8; clear H7 H8; intros.
 split;
- [ idtac | exists y; exists b; split; [ auto with zfc v62 | reflexivity ] ].
+ [ idtac | exists y; exists b; split; [ auto with zfc | reflexivity ] ].
 elim (lem_cartesian_propertie (Img f) (dom f) (couple b y)); intros; apply H8;
  clear H7 H8; intros.
 exists b; exists y; split;
- [ auto with zfc v62 | split; [ auto with zfc v62 | reflexivity ] ].
+ [ auto with zfc | split; [ auto with zfc | reflexivity ] ].
 
 unfold fun_recip in |- *.
 elim
@@ -1781,11 +1781,11 @@ elim
     (cartesien (Img f) (dom f)) (couple b x1)); intros; 
  apply H7; clear H6 H7; intros.
 split;
- [ idtac | exists x1; exists b; split; [ auto with zfc v62 | reflexivity ] ].
+ [ idtac | exists x1; exists b; split; [ auto with zfc | reflexivity ] ].
 elim (lem_cartesian_propertie (Img f) (dom f) (couple b x1)); intros;
  apply H7; clear H6 H7; intros.
 exists b; exists x1; split;
- [ auto with zfc v62 | split; [ auto with zfc v62 | reflexivity ] ].
+ [ auto with zfc | split; [ auto with zfc | reflexivity ] ].
 
 Qed.
 (* End of proof of lem_fun_recip_is_fun_under_inj                          *)
@@ -1806,13 +1806,13 @@ elim
     (cartesien (Img f) (dom f)) (couple y x)); intros; 
  apply H1; clear H0 H1; intros.
 split;
- [ idtac | exists x; exists y; split; [ auto with zfc v62 | reflexivity ] ].
+ [ idtac | exists x; exists y; split; [ auto with zfc | reflexivity ] ].
 generalize (lem_fun_and_dom f x y Af H); intros.
 generalize (lem_fun_and_img f x y Af H); intros.
 elim (lem_cartesian_propertie (Img f) (dom f) (couple y x)); intros; apply H3;
  clear H2 H3; intros.
 exists y; exists x; split;
- [ auto with zfc v62 | split; [ auto with zfc v62 | reflexivity ] ].
+ [ auto with zfc | split; [ auto with zfc | reflexivity ] ].
 
 Qed.
 (* End of proof of lem_xyinf_yxinrecipf                                    *)
@@ -1832,7 +1832,7 @@ unfold fun_bij in H.
 elim H; clear H; intros; clear H; elim H1; clear H1; intros; clear H; elim H1;
  clear H1; intros; clear H.
 unfold fun_bij in |- *.
-split; [ auto with zfc v62 | split ].
+split; [ auto with zfc | split ].
 apply axs_extensionnalite; unfold iff in |- *; split; intros.
 unfold dom in H.
 elim
@@ -1859,7 +1859,7 @@ elim H2; clear H2; intros; elim H2; clear H2; intros; elim H2; clear H2;
 elim (lem_couple_propertie v2 x0 x x1); intros; generalize (H6 H5);
  clear H5 H6 H7; intros.
 elim H5; clear H5; intros.
-rewrite H5; auto with zfc v62.
+rewrite H5; auto with zfc.
 
 generalize (H1 v2 H); intros.
 unfold exUniq in H2.
@@ -1893,7 +1893,7 @@ elim H2; clear H2; intros; elim H2; clear H2; intros; elim H2; clear H2;
  intros; elim H4; clear H4; intros.
 elim (lem_couple_propertie x x0 v2 x1); intros; generalize (H6 H5);
  clear H5 H6 H7; intros.
-elim H5; clear H5; intros; rewrite H6; auto with zfc v62.
+elim H5; clear H5; intros; rewrite H6; auto with zfc.
 
 generalize (lem_App f v2 Af H); intros.
 elim H2; clear H2; intros; elim H2; clear H2; intros.
@@ -1912,7 +1912,7 @@ elim
  generalize (H2 H); clear H H2 H3; intros.
 elim H; clear H; intros; generalize (H2 H0); clear H2; intros; elim H2;
  clear H2; intros.
-exists x; split; [ auto with zfc v62 | intros ].
+exists x; split; [ auto with zfc | intros ].
 unfold fun_recip in H2; unfold fun_recip in H3.
 elim
  (axs_comprehension
@@ -1955,8 +1955,8 @@ unfold fun_inj, fun_bij in |- *; intros.
 elim H; clear H Af; intros; elim H0; clear H0; intros; clear H0; elim H1;
  clear H1; intros; clear H0.
 split;
- [ auto with zfc v62
- | split; [ reflexivity | split; [ reflexivity | auto with zfc v62 ] ] ].
+ [ auto with zfc
+ | split; [ reflexivity | split; [ reflexivity | auto with zfc ] ] ].
 
 Qed.
 (* End of proof of lem_fun_inj_dom_img_is_bij                              *)
@@ -1993,7 +1993,7 @@ elim (lem_couple_propertie x x2 x0 x1); intros; generalize (H4 H3);
  clear H3 H4 H5; intros.
 elim H3; clear H3; intros.
 generalize H2; clear H2; rewrite <- H3; rewrite <- H4; rewrite <- H1;
- auto with zfc v62.
+ auto with zfc.
 
 generalize Arec; clear Arec; generalize Af; intros.
 elim Af; clear Af; intros.
@@ -2102,7 +2102,7 @@ elim H2; clear H2; intros; elim H2; clear H2; intros; elim H2; clear H2;
 elim (lem_couple_propertie v2 x0 x x1); intros; generalize (H7 H6);
  clear H6 H7 H8; intros.
 elim H6; clear H6; intros.
-rewrite H6; auto with zfc v62.
+rewrite H6; auto with zfc.
 
 generalize (H1 v2 H3); clear H1 H3; intros.
 unfold exUniq in H1.
@@ -2139,7 +2139,7 @@ elim H; clear H; intros; elim H; clear H; intros; elim H; clear H; intros;
 elim (lem_couple_propertie x x0 v0 x1); intros; generalize (H6 H5);
  clear H5 H6 H7; intros.
 elim H5; clear H5; intros.
-rewrite H6; auto with zfc v62.
+rewrite H6; auto with zfc.
 
 Qed.
 (* End of proof of lem_exp_elem_img                                        *)
@@ -2155,7 +2155,7 @@ generalize (lem_exp_elem_is_fun a b f H); intros.
 generalize (lem_exp_elem_dom a b f H); intros.
 generalize (lem_exp_elem_img a b f H); intros.
 unfold fun_sig in |- *.
-split; [ auto with zfc v62 | split; auto with zfc v62 ].
+split; [ auto with zfc | split; auto with zfc ].
 
 Qed.
 (* End of proof of lem_exp_elem_prop                                       *)
@@ -2179,7 +2179,7 @@ elim H0; clear H0; intros; elim H0; clear H0; intros; elim H0; clear H0;
  intros.
 elim H2; clear H2; intros.
 exists x1; exists x2; rewrite <- H3; split;
- [ auto with zfc v62 | reflexivity ].
+ [ auto with zfc | reflexivity ].
 
 Qed.
 (* End of proof of lem_fun_elem_is_2tupple                                 *)
@@ -2209,16 +2209,16 @@ generalize (lem_fun_and_dom f x x0 H H2); intros.
 generalize (lem_fun_and_img f x x0 H H2); intros.
 elim (lem_cartesian_propertie b a v3); intros; apply H7; clear H6 H7; intros.
 exists x; exists x0; split.
-rewrite <- H0; auto with zfc v62.
+rewrite <- H0; auto with zfc.
 
 unfold inc in H1; generalize (H1 x0 H5); clear H1 H5; intros.
-split; auto with zfc v62.
+split; auto with zfc.
 
 unfold exUniq in |- *; intros.
 generalize H2; clear H2; rewrite <- H0; intros.
 generalize (lem_App f x H H2); intros.
 elim H3; clear H3; intros; elim H3; clear H3; intros.
-exists x0; split; [ auto with zfc v62 | intros ].
+exists x0; split; [ auto with zfc | intros ].
 elim H; intros.
 exact (H7 x x0 y H4 H5).
 
@@ -2241,12 +2241,12 @@ intros; apply axs_extensionnalite; intros; unfold iff in |- *; split; intros.
 unfold index in H.
 elim (axs_comprehension (fun _ : E => True) (Img a) v2); intros;
  generalize (H0 H); clear H H0 H1; intros; elim H; 
- clear H; intros; auto with zfc v62.
+ clear H; intros; auto with zfc.
 
 unfold index in |- *.
 elim (axs_comprehension (fun _ : E => True) (Img a) v2); intros; apply H1;
  clear H0 H1; intros.
-split; auto with zfc v62.
+split; auto with zfc.
 
 Qed.
 (* End of proof of lem_index_prop                                          *)
@@ -2267,7 +2267,7 @@ elim H1; clear H1; intros; elim H1; clear H1; intros.
 generalize H1; clear H1; rewrite doma; intros.
 generalize (lem_eval_propertie a x1 x0 funa H2); intros.
 generalize H0; clear H0; rewrite H3; clear H3; intros.
-exists x1; split; auto with zfc v62.
+exists x1; split; auto with zfc.
 
 Qed.
 (* End of proof of lem_reunion_index_prop                                  *)
@@ -2292,18 +2292,18 @@ elim
  clear H H1 H2; intros.
 elim H; clear H; intros.
 generalize H; clear H; rewrite (lem_index_prop a I funa doma); intros.
-split; [ auto with zfc v62 | exists (App a funa i); split ].
+split; [ auto with zfc | exists (App a funa i); split ].
 generalize H0; rewrite <- doma; intros.
 generalize (lem_App a i funa H2); intros.
 elim H3; clear H3; intros; elim H3; clear H3; intros.
 generalize (lem_eval_propertie a i x0 funa H4); intros.
-rewrite <- H5; auto with zfc v62.
+rewrite <- H5; auto with zfc.
 
 apply (H1 (App a funa i)); clear H1; intros.
 unfold index in |- *.
 elim (axs_comprehension (fun _ : E => True) (Img a) (App a funa i)); intros;
  apply H2; clear H1 H2; intros.
-split; [ idtac | auto with zfc v62 ].
+split; [ idtac | auto with zfc ].
 generalize H0; rewrite <- doma; intros.
 generalize (lem_eval_prop2 a i funa H1); intros.
 exact (lem_fun_and_img a i (App a funa i) funa H2).
