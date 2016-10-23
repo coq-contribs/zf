@@ -16,8 +16,8 @@ Lemma lem_paire_prop2 : forall a b c : E, paire a b = paire a c <-> b = c.
 (* Proof of lem_paire_prop2                                                *)
 intros; unfold iff in |- *; split; intros.
 elim (lem_paire_propertie a b a c); intros.
-elim H0; intros; [ idtac | idtac | auto with zfc v62 ]; elim H2; intros;
- [ auto with zfc v62 | rewrite <- H3; rewrite H4; reflexivity ].
+elim H0; intros; [ idtac | idtac | auto with zfc ]; elim H2; intros;
+ [ auto with zfc | rewrite <- H3; rewrite H4; reflexivity ].
 
 rewrite H; reflexivity.
 
@@ -33,9 +33,9 @@ Lemma lem_sing_eq_paire :
 intros; unfold singleton in |- *; unfold iff in |- *; split; intros.
 elim (lem_paire_propertie a a b c); intros.
 elim H0; intros;
- [ auto with zfc v62
- | elim H2; intros; split; auto with zfc v62
- | auto with zfc v62 ].
+ [ auto with zfc
+ | elim H2; intros; split; auto with zfc
+ | auto with zfc ].
 
 elim H; intros; rewrite <- H0; rewrite <- H1; reflexivity.
 
@@ -53,20 +53,20 @@ unfold iff in |- *; split; intros.
 elim
  (lem_paire_propertie (singleton al) (paire al bl) 
     (singleton ar) (paire ar br)); intros.
-clear H1; elim H0; clear H0; intros; [ idtac | idtac | auto with zfc v62 ];
+clear H1; elim H0; clear H0; intros; [ idtac | idtac | auto with zfc ];
  elim H0; clear H0; intros.
 elim (lem_singleton_propertie al ar); intros.
 generalize H1; clear H1; elim H2; clear H2; intros;
- [ idtac | auto with zfc v62 ].
+ [ idtac | auto with zfc ].
 elim (lem_paire_prop2 al bl br); intros.
-split; [ reflexivity | auto with zfc v62 ].
+split; [ reflexivity | auto with zfc ].
 
 elim (lem_sing_eq_paire al ar br); intros.
 elim (lem_sing_eq_paire ar al bl); intros.
 cut (singleton ar = paire al bl); intros;
- [ idtac | symmetry  in |- *; auto with zfc v62 ].
-elim H2; intros; [ idtac | auto with zfc v62 ].
-elim H4; intros; [ idtac | auto with zfc v62 ].
+ [ idtac | symmetry  in |- *; auto with zfc ].
+elim H2; intros; [ idtac | auto with zfc ].
+elim H4; intros; [ idtac | auto with zfc ].
 rewrite <- H10; rewrite <- H7; rewrite <- H8; split; reflexivity.
 
 elim H; clear H; intros.
@@ -112,11 +112,11 @@ elim
      exists x0 : E, (exists y : E, In x0 a /\ In y b /\ u = couple x0 y))
     (parties (parties (union a b))) x); intros.
 unfold iff in |- *; split; intros.
-elim H; clear H; clear H0; intros; [ idtac | auto with zfc v62 ].
-do 2 (elim H0; clear H0; intros); exists x0; exists x1; auto with zfc v62.
+elim H; clear H; clear H0; intros; [ idtac | auto with zfc ].
+do 2 (elim H0; clear H0; intros); exists x0; exists x1; auto with zfc.
 
 do 2 (elim H1; clear H1; intros); clear H; apply H0; clear H0.
-split; [ idtac | exists x0; exists x1; auto with zfc v62 ].
+split; [ idtac | exists x0; exists x1; auto with zfc ].
 elim H1; clear H1; intros; elim H0; clear H0; intros.
 elim (axs_parties (parties (union a b)) x); intros.
 clear H2; apply H3; clear H3; intros.
@@ -127,18 +127,18 @@ clear H4; apply H5; clear H5; intros.
 unfold couple in H1.
 elim (axs_paire (singleton x0) (paire x0 x1) v3); intros.
 generalize H2; rewrite H1; intros.
-clear H5; elim H4; clear H4; intros; [ idtac | idtac | auto with zfc v62 ].
+clear H5; elim H4; clear H4; intros; [ idtac | idtac | auto with zfc ].
 generalize H3; rewrite H4; intros.
 elim (lem_in_singleton x0 v0); intros.
 generalize H; clear H8; elim H7; clear H7; intros;
- [ idtac | auto with zfc v62 ]; left; auto with zfc v62.
+ [ idtac | auto with zfc ]; left; auto with zfc.
 
 generalize H3; rewrite H4; intros.
 elim (axs_paire x0 x1 v0); intros.
 clear H8; elim H7; clear H7; intros;
- [ rewrite H7; left; auto with zfc v62
- | rewrite H7; right; auto with zfc v62
- | auto with zfc v62 ].
+ [ rewrite H7; left; auto with zfc
+ | rewrite H7; right; auto with zfc
+ | auto with zfc ].
 
 Qed.
 (* End of proof of lem_cartesian_propertie                                 *)
@@ -156,7 +156,7 @@ elim
 split;
  [ idtac
  | exists x; exists y; split;
-    [ auto with zfc v62 | split; [ auto with zfc v62 | reflexivity ] ] ].
+    [ auto with zfc | split; [ auto with zfc | reflexivity ] ] ].
 elim (axs_parties (parties (union a b)) (couple x y)); intros; apply H2;
  clear H1 H2; intros.
 elim (axs_parties (union a b) v3); intros; apply H3; clear H2 H3; intros.
@@ -169,16 +169,16 @@ generalize H2; clear H2; rewrite H3; clear H3; intros.
 elim (lem_in_singleton x v0); intros.
 generalize (H3 H2); clear H2 H3 H4; intros; rewrite H2.
 elim (lem_union_propertie a b x); intros.
-apply H4; left; auto with zfc v62.
+apply H4; left; auto with zfc.
 
 generalize H2; clear H2; rewrite H3; clear H3; intros.
 elim (axs_paire x y v0); intros.
 generalize (H3 H2); clear H2 H3 H4; intros; elim H2; clear H2; intros.
 rewrite H2; clear H2; elim (lem_union_propertie a b x); intros.
-apply H3; left; auto with zfc v62.
+apply H3; left; auto with zfc.
 
 rewrite H2; clear H2; elim (lem_union_propertie a b y); intros.
-apply H3; right; auto with zfc v62.
+apply H3; right; auto with zfc.
 
 Qed.
 (* End of proof of lem_cartesian_cons                                      *)
@@ -233,44 +233,44 @@ unfold iff in |- *; split; intros.
 elim H; clear H H0; intros;
  [ clear H11; apply H2; clear H1 H2; intros
  | clear H11; apply H2; clear H1 H2; intros
- | auto with zfc v62 ].
+ | auto with zfc ].
 unfold disj_l in H.
-elim H7; clear H7 H8; intros; [ clear H | auto with zfc v62 ].
+elim H7; clear H7 H8; intros; [ clear H | auto with zfc ].
 elim H1; clear H1; intros.
 elim H; clear H; intros.
 left; apply H4; clear H3 H4; intros.
-exists x; split; auto with zfc v62.
+exists x; split; auto with zfc.
 
 unfold disj_r in H.
-elim H9; clear H9 H10; intros; [ clear H | auto with zfc v62 ].
+elim H9; clear H9 H10; intros; [ clear H | auto with zfc ].
 elim H1; clear H1; intros.
 elim H; clear H; intros.
 right; apply H6; clear H5 H6; intros.
-exists x; split; auto with zfc v62.
+exists x; split; auto with zfc.
 
 apply H0; clear H H0; intros.
-elim H1; clear H1 H2; intros; [ clear H11 | clear H11 | auto with zfc v62 ].
+elim H1; clear H1 H2; intros; [ clear H11 | clear H11 | auto with zfc ].
 left; unfold disj_l in |- *; apply H8; clear H7 H8; intros.
 apply lem_and_sym; elim H3; clear H3 H4; intros;
- [ clear H | auto with zfc v62 ].
+ [ clear H | auto with zfc ].
 elim H0; clear H0; intros.
-split; [ exists x; split; auto with zfc v62 | idtac ].
+split; [ exists x; split; auto with zfc | idtac ].
 elim (lem_cartesian_propertie a (singleton Vide) v2); intros.
 apply H2; clear H1 H2; exists x; exists Vide; split;
- [ auto with zfc v62
- | apply lem_and_sym; split; [ auto with zfc v62 | idtac ] ].
+ [ auto with zfc
+ | apply lem_and_sym; split; [ auto with zfc | idtac ] ].
 unfold singleton in |- *; elim (axs_paire Vide Vide Vide); intros.
 apply H2; clear H1 H2; left; reflexivity.
 
 right; unfold disj_r in |- *; apply H10; clear H9 H10; intros.
 apply lem_and_sym; elim H5; clear H5 H6; intros;
- [ clear H | auto with zfc v62 ].
+ [ clear H | auto with zfc ].
 elim H0; clear H0; intros.
-split; [ exists x; split; auto with zfc v62 | idtac ].
+split; [ exists x; split; auto with zfc | idtac ].
 elim (lem_cartesian_propertie b (singleton (singleton Vide)) v2); intros.
 apply H2; clear H1 H2; exists x; exists (singleton Vide); split;
- [ auto with zfc v62
- | apply lem_and_sym; split; [ auto with zfc v62 | idtac ] ].
+ [ auto with zfc
+ | apply lem_and_sym; split; [ auto with zfc | idtac ] ].
 unfold singleton in |- *;
  elim (axs_paire (paire Vide Vide) (paire Vide Vide) (paire Vide Vide));
  intros.
@@ -302,23 +302,23 @@ unfold couple in |- *.
 elim (axs_reunion (paire (singleton a) (paire a b)) v2); intros.
 elim (axs_paire a b v2); intros.
 unfold iff in |- *; split; intros.
-elim H; clear H H0; intros; [ clear H3 | auto with zfc v62 ].
+elim H; clear H H0; intros; [ clear H3 | auto with zfc ].
 elim H; clear H; intros.
 apply H2; clear H1 H2; intros.
 elim (axs_paire (singleton a) (paire a b) x); intros.
-elim H1; clear H1 H2; intros; [ clear H | clear H | auto with zfc v62 ].
+elim H1; clear H1 H2; intros; [ clear H | clear H | auto with zfc ].
 left; generalize H0; rewrite H1; clear H1 H0; intros.
 unfold singleton in H0.
 elim (axs_paire a a v2); intros.
-apply lem_or_contract; apply H; auto with zfc v62.
+apply lem_or_contract; apply H; auto with zfc.
 
 generalize H0; rewrite H1; clear H1 H0; intros.
-elim (axs_paire a b v2); auto with zfc v62.
+elim (axs_paire a b v2); auto with zfc.
 
 apply H0; clear H0 H; intros.
-exists (paire a b); split; [ idtac | auto with zfc v62 ].
+exists (paire a b); split; [ idtac | auto with zfc ].
 clear H1 H2 H3; elim (axs_paire (singleton a) (paire a b) (paire a b));
- auto with zfc v62.
+ auto with zfc.
 
 Qed.
 (* End of proof of lem_reunion_couple                                      *)
@@ -342,13 +342,13 @@ elim
     (fun x : E =>
      exists a0 : E, (exists b0 : E, couple a b = couple a0 b0 /\ In x a0))
     (reunion (reunion (couple a b))) v2); intros.
-elim H0; clear H0 H1; intros; [ clear H | auto with zfc v62 ].
+elim H0; clear H0 H1; intros; [ clear H | auto with zfc ].
 elim H1; clear H1; intros.
 elim H; clear H; intros.
 elim H; clear H; intros.
 elim (lem_couple_propertie a x b x0); intros.
-elim H2; clear H2 H3; intros; [ clear H | auto with zfc v62 ].
-rewrite H2; auto with zfc v62.
+elim H2; clear H2 H3; intros; [ clear H | auto with zfc ].
+rewrite H2; auto with zfc.
 
 unfold first in |- *.
 elim
@@ -359,10 +359,10 @@ elim
 apply H1; clear H1 H0; intros.
 rewrite (lem_reunion_couple a b).
 split;
- [ idtac | exists a; exists b; split; [ reflexivity | auto with zfc v62 ] ].
+ [ idtac | exists a; exists b; split; [ reflexivity | auto with zfc ] ].
 elim (lem_union_propertie a b v2); intros.
 clear H0; unfold union in H1; apply H1; clear H1; intros.
-left; auto with zfc v62.
+left; auto with zfc.
 
 Qed.
 (* End of proof of lem_first_prop                                          *)
@@ -376,13 +376,13 @@ elim
     (fun x : E =>
      exists a0 : E, (exists b0 : E, couple a b = couple a0 b0 /\ In x b0))
     (reunion (reunion (couple a b))) v2); intros.
-elim H0; clear H0 H1; intros; [ clear H | auto with zfc v62 ].
+elim H0; clear H0 H1; intros; [ clear H | auto with zfc ].
 elim H1; clear H1; intros.
 elim H; clear H; intros.
 elim H; clear H; intros.
 elim (lem_couple_propertie a x b x0); intros.
-elim H2; clear H2 H3; intros; [ clear H | auto with zfc v62 ].
-rewrite H3; auto with zfc v62.
+elim H2; clear H2 H3; intros; [ clear H | auto with zfc ].
+rewrite H3; auto with zfc.
 
 unfold second in |- *.
 elim
@@ -393,10 +393,10 @@ elim
 apply H1; clear H1 H0; intros.
 rewrite (lem_reunion_couple a b).
 split;
- [ idtac | exists a; exists b; split; [ reflexivity | auto with zfc v62 ] ].
+ [ idtac | exists a; exists b; split; [ reflexivity | auto with zfc ] ].
 elim (lem_union_propertie a b v2); intros.
 clear H0; unfold union in H1; apply H1; clear H1; intros.
-right; auto with zfc v62.
+right; auto with zfc.
 
 Qed.
 (* End of proof of lem_second_propertie                                    *)
@@ -415,7 +415,7 @@ elim (axs_reunion (reunion z) x); intros; apply H1; clear H0 H1; intros.
 exists (singleton x); split; [ idtac | apply lem_x_in_sing_x ].
 elim (axs_reunion z (singleton x)); intros; apply H1; clear H0 H1; intros.
 exists (couple x y); split;
- [ auto with zfc v62
+ [ auto with zfc
  | elim (axs_paire (singleton x) (paire x y) (singleton x)); intros; apply H1;
     left; reflexivity ].
 
@@ -424,7 +424,7 @@ exists (paire x y); split;
  [ idtac | elim (axs_paire x y y); intros; apply H1; right; reflexivity ].
 elim (axs_reunion z (paire x y)); intros; apply H1; clear H0 H1; intros.
 exists (couple x y); split;
- [ auto with zfc v62
+ [ auto with zfc
  | elim (axs_paire (singleton x) (paire x y) (paire x y)); intros; apply H1;
     right; reflexivity ].
 
@@ -452,19 +452,19 @@ Fixpoint cart_power (m : nat) : E -> E :=
 
 Lemma cart_power_eq1 : forall a : E, cart_power 0 a = Vide. 
 Proof.
- auto with zfc v62.
+ auto with zfc.
 Qed.
 
 Lemma cart_power_eq2 : forall a : E, cart_power 1 a = a.
 Proof.
- auto with zfc v62.
+ auto with zfc.
 Qed.
 
 Lemma cart_power_eq3 :
  forall (n : nat) (a : E),
  cart_power (S (S n)) a = cartesien a (cart_power (S n) a).
 Proof.
- auto with zfc v62.
+ auto with zfc.
 Qed.
 
 Lemma lem_eq_cart_power : forall a : E, cart_power 2 a = cartesien a a.

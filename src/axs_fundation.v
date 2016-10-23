@@ -21,7 +21,7 @@ unfold not in |- *; intros.
 unfold Vide in H; generalize (lem_vide_propertie x var_vide); rewrite <- H;
  intros.
 generalize (lem_x_in_sing_x x); intros.
-absurd (In x (singleton x)); auto with zfc v62.
+absurd (In x (singleton x)); auto with zfc.
 
 Qed.
 (* End of proof of lem_sing_not_empty                                      *)
@@ -32,7 +32,7 @@ unfold not in |- *; intros.
 elim (axs_vide_or_not x); intros.
 generalize H; clear H; rewrite H0; clear H0; intros.
 generalize lem_not_vide_in_vide; intros.
-absurd (In Vide Vide); auto with zfc v62.
+absurd (In Vide Vide); auto with zfc.
 
 generalize (axs_fundation (singleton x) (lem_sing_not_empty x)); intros.
 elim H1; clear H1; intros; elim H1; clear H1; intros.
@@ -42,12 +42,12 @@ generalize H2; clear H2; rewrite H1; clear H1; intros.
 cut (In x (inter x (singleton x))); intros.
 generalize H1; clear H1; rewrite H2; unfold Vide in |- *; intros.
 generalize (lem_vide_propertie x var_vide); intros.
-absurd (In x (vide var_vide)); auto with zfc v62.
+absurd (In x (vide var_vide)); auto with zfc.
 
 unfold inter in |- *; unfold def_F_inter in |- *.
 elim (axs_comprehension (fun x0 : E => In x0 (singleton x)) x x); intros;
  apply H3; clear H1 H3; intros.
-split; [ auto with zfc v62 | apply lem_x_in_sing_x ].
+split; [ auto with zfc | apply lem_x_in_sing_x ].
 
 Qed.
 (* End of proof of lem_x_not_in_x                                          *)
@@ -68,7 +68,7 @@ elim (axs_comprehension (fun x : E => In x b) a v0); intros;
  generalize (H2 H1); clear H1 H2 H3; intros.
 elim H1; clear H1; intros.
 generalize (H v0 H1) (H0 v0 H2); clear H H0; intros.
-absurd (In v0 a); auto with zfc v62.
+absurd (In v0 a); auto with zfc.
 
 Qed.
 (* End of proof of lem_inter_is_empty                                      *)
